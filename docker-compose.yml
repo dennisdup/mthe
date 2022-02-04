@@ -1,0 +1,22 @@
+version: '3'
+services:
+  php:
+    build:
+      context: ./
+    volumes:
+      - ./php:/var/www
+      - composer_cache:/home/docker/.composer/cache
+    working_dir: /var/www
+    links:
+      - mysql
+  web:
+    image: nginx:1.10
+    volumes:
+      - ./php:/var/www
+    links:
+      - php
+  mysql:
+    image: mysql:5.7
+
+volumes:
+  composer_cache:

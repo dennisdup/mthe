@@ -1,0 +1,83 @@
+<?php
+
+return [
+    'item' => [
+        'disk' => env('ITEM_DISK', 'ftp'),
+        'filepath' => env('ITEM_FILEPATH', './EG/ITEM.XML'),
+        'mapping' => [
+            'ITEM' => 'external_id',
+            'ITEMBRAND' => 'bran_number',
+            'ITEMSTYLE' => 'style',
+            'ITEMQUALITY' => 'quality',
+            'ITEMTEXT' => 'text',
+            'BRAND' => 'brand',
+            'BRANDTEXT' => 'brand_text',
+            'ITEMGROUP' => 'group',
+            'ITEMGROUPTEXT' => 'group_text',
+            'COMPCODE' => 'comp_code',
+            'COMPTEXT' => 'comp_text',
+            'IMAGE2' => 'image_2',
+            'ITEMCOLOR' => 'item_color',
+            'PICCOLOR' => 'pic_color',
+            'PICSTYLE' => 'pic_style',
+            'PICCOLOR2' => 'item_color_2',
+            'PICCOLOR3' => 'item_color_3',
+            'PICCOLOR4' => 'item_color_4',
+            'PICCOLOR5' => 'item_color_5',
+            'PICCOLOR6' => 'item_color_6',
+            'PICCOLOR7' => 'item_color_7',
+            'PICCOLOR8' => 'item_color_8',
+            'PICCOLOR9' => 'item_color_9',
+            'PICCOLOR10' => 'item_color_10',
+            'ITEMCOLORTEXT' => 'item_color_text',
+            'COLLECTION' => 'collection',
+            'COLLECTIONNAME' => 'collection_name',
+            'NEW' => 'new',
+            'ACTIV' => 'active',
+        ],
+    ],
+    'variant' => [
+        'disk' => env('ITEM_DISK', 'ftp'),
+        'filepath' => env('ITEM_FILEPATH', './EG/VARIANT.XML'),
+        'mapping' => [
+            'VARIANT' => 'external_id',
+            'COLOURCODE' => 'colour_code',
+            'COLOURTEXT' => 'colour_text',
+            'SIZENO' => 'size_no',
+            'SIZE' => 'size',
+            'PRICELEVEL' => 'price_level',
+            'ACTIVCOLOUR' => 'activ_colour',
+            'EAN' => 'ean',
+            'ITEMSTYLE' => 'item_style',
+            'PICCOLOR' => 'pic_color',
+            'ITEMTEXT' => 'item_text',
+        ]
+    ],
+    'stock' => [
+        'disk' => env('ITEM_DISK', 'ftp'),
+        'filepath' => env('ITEM_FILEPATH', './EG/STOCK.XML'),
+        'mapping' => [
+            'NEXTWEEK' => 'next_week',
+            'NEXTQUANTITY' => 'next_quantity',
+            'QUANTITY' => 'quantity',
+        ],
+    ],
+    'price' => [
+        'disk' => env('ITEM_DISK', 'ftp'),
+        'filepath' => env('ITEM_FILEPATH', './EG/PRICES.XML'),
+        'mapping' => [
+            'PRICELEVEL' => 'price_level',
+            'PRICELIST' => 'price_list',
+            'PRICE' => 'price',
+            'CURRENCY' => 'currency',
+        ],
+    ],
+    'text' => [
+        'disk' => env('ITEM_DISK', 'ftp'),
+        'filepath' => env('ITEM_FILEPATH', './EG/ITEMTEXT.xml'),
+        'mapping' => [
+            'LANGUAGE' => 'language',
+            'TEXT' => 'text',
+        ],
+    ],
+];

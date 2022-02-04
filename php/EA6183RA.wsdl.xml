@@ -1,0 +1,1114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<wsdl:definitions targetNamespace="http://ea6183ra.ws.aspect4.eg.dk" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ea6183ra.ws.aspect4.eg.dk" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsi="http://ws-i.org/profiles/basic/1.1/xsd" xmlns:wsse="http://ws.aspect4.eg.dk" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsdl:documentation>webservice vare/order</wsdl:documentation>
+<wsdl:types>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ea6183ra.ws.aspect4.eg.dk">
+<complexType name="Credentials">
+<sequence>
+<element maxOccurs="1" minOccurs="1" name="user" type="xsd:string"/>
+<element maxOccurs="1" minOccurs="1" name="password" type="xsd:string"/>
+</sequence>
+</complexType>
+<complexType name="CallError">
+<sequence>
+<element maxOccurs="1" minOccurs="1" name="errorid" type="xsd:string"/>
+<element maxOccurs="1" minOccurs="1" name="errortext" type="xsd:string"/>
+<element maxOccurs="1" minOccurs="1" name="errorref" type="xsd:string"/>
+<element maxOccurs="1" minOccurs="1" name="errorkeyword" type="xsd:string"/>
+</sequence>
+</complexType>
+<complexType name="GetitemsRequest">
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="sessionid" type="xsd:string">
+<annotation>
+<documentation>Sessionid</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="next" type="xsd:string">
+<annotation>
+<documentation>Næste</documentation>
+</annotation>
+</element>
+</sequence>
+</complexType>
+<element name="getitems">
+<complexType>
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="credentials" type="tns:Credentials"/>
+<element maxOccurs="1" minOccurs="1" name="request" type="tns:GetitemsRequest"/>
+</sequence>
+</complexType>
+</element>
+<complexType name="GetitemsResponseGrpitemColourliste">
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="colour" type="xsd:string">
+<annotation>
+<documentation>Colour code and text</documentation>
+</annotation>
+</element>
+</sequence>
+</complexType>
+<complexType name="GetitemsResponseGrpitemSizeliste">
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="size" type="xsd:string">
+<annotation>
+<documentation>Size and text</documentation>
+</annotation>
+</element>
+</sequence>
+</complexType>
+<complexType name="GetitemsResponseGrpitem">
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="itemno" type="xsd:long">
+<annotation>
+<documentation>Itemno</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="field1" type="xsd:int">
+<annotation>
+<documentation>Field1</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="field2" type="xsd:int">
+<annotation>
+<documentation>Field2</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="field3" type="xsd:int">
+<annotation>
+<documentation>Field3</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="field5" type="xsd:int">
+<annotation>
+<documentation>Field5</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="price" type="xsd:decimal">
+<annotation>
+<documentation>Price</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="itemtext" type="xsd:string">
+<annotation>
+<documentation>Itemtext</documentation>
+</annotation>
+</element>
+<element maxOccurs="unbounded" minOccurs="0" name="colourliste" type="tns:GetitemsResponseGrpitemColourliste"/>
+<element maxOccurs="unbounded" minOccurs="0" name="sizeliste" type="tns:GetitemsResponseGrpitemSizeliste"/>
+</sequence>
+</complexType>
+<complexType name="GetitemsResponse">
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="sessionid" type="xsd:string">
+<annotation>
+<documentation>Sessionid</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="next" type="xsd:string">
+<annotation>
+<documentation>Næste</documentation>
+</annotation>
+</element>
+<element maxOccurs="unbounded" minOccurs="0" name="grpitem" type="tns:GetitemsResponseGrpitem"/>
+<element maxOccurs="1" minOccurs="1" name="success" type="xsd:boolean"/>
+<element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:CallError"/>
+</sequence>
+</complexType>
+<element name="getitemsResult">
+<complexType>
+<sequence>
+<element maxOccurs="1" minOccurs="1" name="response" type="tns:GetitemsResponse"/>
+</sequence>
+</complexType>
+</element>
+<complexType name="GetstockRequest">
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="sessionid" type="xsd:string">
+<annotation>
+<documentation>Sessionid</documentation>
+</annotation>
+</element>
+<element maxOccurs="unbounded" minOccurs="0" name="itemno" type="xsd:long">
+<annotation>
+<documentation>Vare</documentation>
+</annotation>
+</element>
+<element maxOccurs="unbounded" minOccurs="0" name="ean" type="xsd:long">
+<annotation>
+<documentation>Ean</documentation>
+</annotation>
+</element>
+<element maxOccurs="unbounded" minOccurs="0" name="variantid" type="xsd:string">
+<annotation>
+<documentation>Variant id</documentation>
+</annotation>
+</element>
+</sequence>
+</complexType>
+<element name="getstock">
+<complexType>
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="credentials" type="tns:Credentials"/>
+<element maxOccurs="1" minOccurs="1" name="request" type="tns:GetstockRequest"/>
+</sequence>
+</complexType>
+</element>
+<complexType name="GetstockResponseGrpstock">
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="itemno" type="xsd:long">
+<annotation>
+<documentation>Itemno</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="ean" type="xsd:long">
+<annotation>
+<documentation>Ean-no.</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="variantid" type="xsd:string">
+<annotation>
+<documentation>Variant id</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="field1" type="xsd:int">
+<annotation>
+<documentation>Field1</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="field2" type="xsd:int">
+<annotation>
+<documentation>Field2</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="field3" type="xsd:int">
+<annotation>
+<documentation>Field3</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="field5" type="xsd:int">
+<annotation>
+<documentation>Field5</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="field4" type="xsd:int">
+<annotation>
+<documentation>Field4 - cokour</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="size" type="xsd:int">
+<annotation>
+<documentation>Size</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="quantity" type="xsd:int">
+<annotation>
+<documentation>Quantity</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="nextterm" type="xsd:string">
+<annotation>
+<documentation>Næste tilgangsdato</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="nexttermquan" type="xsd:string">
+<annotation>
+<documentation>Næste termin disponibel</documentation>
+</annotation>
+</element>
+</sequence>
+</complexType>
+<complexType name="GetstockResponse">
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="sessionid" type="xsd:string">
+<annotation>
+<documentation>Sessionid</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="next" type="xsd:string">
+<annotation>
+<documentation>Næste</documentation>
+</annotation>
+</element>
+<element maxOccurs="unbounded" minOccurs="0" name="grpstock" type="tns:GetstockResponseGrpstock"/>
+<element maxOccurs="1" minOccurs="1" name="success" type="xsd:boolean"/>
+<element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:CallError"/>
+</sequence>
+</complexType>
+<element name="getstockResult">
+<complexType>
+<sequence>
+<element maxOccurs="1" minOccurs="1" name="response" type="tns:GetstockResponse"/>
+</sequence>
+</complexType>
+</element>
+<complexType name="CreateorderRequestGrplines">
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="itemno" type="xsd:long">
+<annotation>
+<documentation>Itemno</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="ean" type="xsd:long">
+<annotation>
+<documentation>EAN-no.</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="variantid" type="xsd:string">
+<annotation>
+<documentation>Variant id</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="field4" type="xsd:int">
+<annotation>
+<documentation>Field4 - color</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="size" type="xsd:int">
+<annotation>
+<documentation>Size</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="quantity" type="xsd:int">
+<annotation>
+<documentation>Quantity</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="price" type="xsd:decimal">
+<annotation>
+<documentation>Price</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="itemdiscount" type="xsd:decimal">
+<annotation>
+<documentation>Item dicsount</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="text" type="xsd:string">
+<annotation>
+<documentation>Tekst</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="deliveryweek" type="xsd:int">
+<annotation>
+<documentation>Deliveryweek</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="sizetext" type="xsd:string">
+<annotation>
+<documentation>Str. tekst</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="deliverydatel" type="xsd:string">
+<annotation>
+<documentation>Format YYYYMMDD  på ´linjeniveau´</documentation>
+</annotation>
+</element>
+</sequence>
+</complexType>
+<complexType name="CreateorderRequest">
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="sessionid" type="xsd:string">
+<annotation>
+<documentation>Sessionid</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="currency" type="xsd:string">
+<annotation>
+<documentation>Currency</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="countrycode" type="xsd:string">
+<annotation>
+<documentation>Country code (own)</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="weborder" type="xsd:string">
+<annotation>
+<documentation>Web order from shop</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="mail" type="xsd:string">
+<annotation>
+<documentation>Mail</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="id" type="xsd:string">
+<annotation>
+<documentation>Id from web-shop</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
+<annotation>
+<documentation>Name (buyer)</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="street" type="xsd:string">
+<annotation>
+<documentation>Street</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="zip" type="xsd:string">
+<annotation>
+<documentation>Zip</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="town" type="xsd:string">
+<annotation>
+<documentation>Town</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="country" type="xsd:string">
+<annotation>
+<documentation>Country</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="phonenumber" type="xsd:string">
+<annotation>
+<documentation>Phonenumber</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="type" type="xsd:string">
+<annotation>
+<documentation>Type of sale</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="discount" type="xsd:decimal">
+<annotation>
+<documentation>Invoice discounts</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="date" type="xsd:int">
+<annotation>
+<documentation>Date</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="delivery" type="xsd:string">
+<annotation>
+<documentation>Shipping way</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="dibsid" type="xsd:string">
+<annotation>
+<documentation>Id to dibs</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="freight" type="xsd:decimal">
+<annotation>
+<documentation>Freight</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="remark" type="xsd:string">
+<annotation>
+<documentation>Comment</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="deliveryname" type="xsd:string">
+<annotation>
+<documentation>Deliveryname</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="deliverystreet" type="xsd:string">
+<annotation>
+<documentation>Deliverystreet</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="deliveryzip" type="xsd:string">
+<annotation>
+<documentation>Deliveryzip</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="deliverytown" type="xsd:string">
+<annotation>
+<documentation>Deliverytown</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="deliverycountry" type="xsd:string">
+<annotation>
+<documentation>Deliverycountry</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="deliveryatt" type="xsd:string">
+<annotation>
+<documentation>Deliveryatt</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="packageshopid" type="xsd:string">
+<annotation>
+<documentation>Package shopid</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="shopid" type="xsd:string">
+<annotation>
+<documentation>Shop ID</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="paymenttype" type="xsd:string">
+<annotation>
+<documentation>Betalingstype</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="cardtype" type="xsd:string">
+<annotation>
+<documentation>Kort type</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="customerid" type="xsd:int">
+<annotation>
+<documentation>Customer number</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="etiktxt1" type="xsd:string">
+<annotation>
+<documentation>Etikettetekst 1</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="etiktxt2" type="xsd:string">
+<annotation>
+<documentation>Etikettetekst 2</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="etiktxt3" type="xsd:string">
+<annotation>
+<documentation>Etikettetekst 3</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="etiktxt4" type="xsd:string">
+<annotation>
+<documentation>Etikettetekst 4</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="etiktxt5" type="xsd:string">
+<annotation>
+<documentation>Etikettetekst 5</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="etiktxt6" type="xsd:string">
+<annotation>
+<documentation>Etikettetekst 6</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt1" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 1</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt2" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 2</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt3" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 3</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt4" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 4</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt5" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 5</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt6" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 6</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt7" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 7</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt8" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 8</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt9" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 9</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt10" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 10</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt11" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 11</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt12" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 12</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt13" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 13</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt14" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 14</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt15" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 15</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt16" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 16</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt17" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 17</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt18" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 18</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt19" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 19</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt20" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 20</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt21" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 21</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt22" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 22</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt23" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 23</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="afstxt24" type="xsd:string">
+<annotation>
+<documentation>Afslutningstekst 24</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="deliverydate" type="xsd:string">
+<annotation>
+<documentation>Format YYYYMMDD</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="deliveryweekh" type="xsd:int">
+<annotation>
+<documentation>Deliveryweek på ´hovedniveau´</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="packing1" type="xsd:string">
+<annotation>
+<documentation>Packinginstrucktions</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="packing2" type="xsd:string">
+<annotation>
+<documentation>Packinginstrucktions</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="packing3" type="xsd:string">
+<annotation>
+<documentation>Packinginstrucktions</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="packing4" type="xsd:string">
+<annotation>
+<documentation>Packinginstrucktions</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="packing5" type="xsd:string">
+<annotation>
+<documentation>Packinginstrucktions</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="packing6" type="xsd:string">
+<annotation>
+<documentation>Packinginstrucktions</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="onedelivery" type="xsd:string">
+<annotation>
+<documentation>Samlet levering</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="deliverycountrytext" type="xsd:string"/>
+<element maxOccurs="1" minOccurs="0" name="countrytext" type="xsd:string"/>
+<element maxOccurs="unbounded" minOccurs="0" name="grplines" type="tns:CreateorderRequestGrplines"/>
+</sequence>
+</complexType>
+<element name="createorder">
+<complexType>
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="credentials" type="tns:Credentials"/>
+<element maxOccurs="1" minOccurs="1" name="request" type="tns:CreateorderRequest"/>
+</sequence>
+</complexType>
+</element>
+<complexType name="CreateorderResponse">
+<sequence>
+<element maxOccurs="1" minOccurs="1" name="success" type="xsd:boolean"/>
+<element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:CallError"/>
+</sequence>
+</complexType>
+<element name="createorderResult">
+<complexType>
+<sequence>
+<element maxOccurs="1" minOccurs="1" name="response" type="tns:CreateorderResponse"/>
+</sequence>
+</complexType>
+</element>
+<complexType name="GettotalstockRequestGrpstock">
+<sequence/>
+</complexType>
+<complexType name="GettotalstockRequest">
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="sessionid" type="xsd:string">
+<annotation>
+<documentation>Sessionid</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="next" type="xsd:string">
+<annotation>
+<documentation>Næste</documentation>
+</annotation>
+</element>
+<element maxOccurs="unbounded" minOccurs="0" name="grpstock" type="tns:GettotalstockRequestGrpstock"/>
+</sequence>
+</complexType>
+<element name="gettotalstock">
+<complexType>
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="credentials" type="tns:Credentials"/>
+<element maxOccurs="1" minOccurs="1" name="request" type="tns:GettotalstockRequest"/>
+</sequence>
+</complexType>
+</element>
+<complexType name="GettotalstockResponseGrpstock">
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="itemno" type="xsd:long">
+<annotation>
+<documentation>Itemno</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="ean" type="xsd:long">
+<annotation>
+<documentation>Ean-no.</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="variantid" type="xsd:string">
+<annotation>
+<documentation>Variant id</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="field1" type="xsd:int">
+<annotation>
+<documentation>Field1</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="field2" type="xsd:int">
+<annotation>
+<documentation>Field2</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="field3" type="xsd:int">
+<annotation>
+<documentation>Field3</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="field5" type="xsd:int">
+<annotation>
+<documentation>Field5</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="field4" type="xsd:int">
+<annotation>
+<documentation>Field4 - colour</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="size" type="xsd:int">
+<annotation>
+<documentation>Size</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="quantity" type="xsd:int">
+<annotation>
+<documentation>Quantity</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="nextterm" type="xsd:string">
+<annotation>
+<documentation>Næste tilgangsdato</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="nexttermquan" type="xsd:string">
+<annotation>
+<documentation>Næste termin disponibel</documentation>
+</annotation>
+</element>
+</sequence>
+</complexType>
+<complexType name="GettotalstockResponse">
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="sessionid" type="xsd:string">
+<annotation>
+<documentation>Sessionid</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="next" type="xsd:string">
+<annotation>
+<documentation>Næste</documentation>
+</annotation>
+</element>
+<element maxOccurs="unbounded" minOccurs="0" name="grpstock" type="tns:GettotalstockResponseGrpstock"/>
+<element maxOccurs="1" minOccurs="1" name="success" type="xsd:boolean"/>
+<element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:CallError"/>
+</sequence>
+</complexType>
+<element name="gettotalstockResult">
+<complexType>
+<sequence>
+<element maxOccurs="1" minOccurs="1" name="response" type="tns:GettotalstockResponse"/>
+</sequence>
+</complexType>
+</element>
+<complexType name="GetdocumentlistRequest">
+<sequence>
+<element maxOccurs="1" minOccurs="1" name="sessionid" type="xsd:string">
+<annotation>
+<documentation>Sessionid</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="1" name="customerid" type="xsd:int">
+<annotation>
+<documentation>Customer number</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="1" name="documenttype" type="xsd:string">
+<annotation>
+<documentation>Document type</documentation>
+</annotation>
+</element>
+</sequence>
+</complexType>
+<element name="getdocumentlist">
+<complexType>
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="credentials" type="tns:Credentials"/>
+<element maxOccurs="1" minOccurs="1" name="request" type="tns:GetdocumentlistRequest"/>
+</sequence>
+</complexType>
+</element>
+<complexType name="GetdocumentlistResponse">
+<sequence>
+<element maxOccurs="1" minOccurs="1" name="sessionid" type="xsd:string">
+<annotation>
+<documentation>Sessionid</documentation>
+</annotation>
+</element>
+<element maxOccurs="unbounded" minOccurs="1" name="documentids" type="xsd:string">
+<annotation>
+<documentation>Path to the document</documentation>
+</annotation>
+</element>
+<element maxOccurs="unbounded" minOccurs="1" name="documenttexts" type="xsd:string">
+<annotation>
+<documentation>Document description</documentation>
+</annotation>
+</element>
+<element maxOccurs="unbounded" minOccurs="1" name="documentdates" type="xsd:string">
+<annotation>
+<documentation>Creation date</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="1" name="success" type="xsd:boolean"/>
+<element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:CallError"/>
+</sequence>
+</complexType>
+<element name="getdocumentlistResult">
+<complexType>
+<sequence>
+<element maxOccurs="1" minOccurs="1" name="response" type="tns:GetdocumentlistResponse"/>
+</sequence>
+</complexType>
+</element>
+<complexType name="ShowdocumentRequest">
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="sessionid" type="xsd:string">
+<annotation>
+<documentation>Sessionid</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="documentid" type="xsd:string">
+<annotation>
+<documentation>Path to the document</documentation>
+</annotation>
+</element>
+</sequence>
+</complexType>
+<element name="showdocument">
+<complexType>
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="credentials" type="tns:Credentials"/>
+<element maxOccurs="1" minOccurs="1" name="request" type="tns:ShowdocumentRequest"/>
+</sequence>
+</complexType>
+</element>
+<complexType name="ShowdocumentResponse">
+<sequence>
+<element maxOccurs="1" minOccurs="1" name="sessionid" type="xsd:string">
+<annotation>
+<documentation>Sessionid</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="documenturl" type="xsd:string">
+<annotation>
+<documentation>Document URL</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="1" name="success" type="xsd:boolean"/>
+<element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:CallError"/>
+</sequence>
+</complexType>
+<element name="showdocumentResult">
+<complexType>
+<sequence>
+<element maxOccurs="1" minOccurs="1" name="response" type="tns:ShowdocumentResponse"/>
+</sequence>
+</complexType>
+</element>
+<complexType name="GetdocumentRequest">
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="sessionid" type="xsd:string">
+<annotation>
+<documentation>Sessionid</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="1" name="documenttype" type="xsd:string">
+<annotation>
+<documentation>Document type</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="0" name="documentnr" type="xsd:string">
+<annotation>
+<documentation>Dokument (ordre, følgeseddel, faktura) nummer</documentation>
+</annotation>
+</element>
+</sequence>
+</complexType>
+<element name="getdocument">
+<complexType>
+<sequence>
+<element maxOccurs="1" minOccurs="0" name="credentials" type="tns:Credentials"/>
+<element maxOccurs="1" minOccurs="1" name="request" type="tns:GetdocumentRequest"/>
+</sequence>
+</complexType>
+</element>
+<complexType name="GetdocumentResponse">
+<sequence>
+<element maxOccurs="1" minOccurs="1" name="sessionid" type="xsd:string">
+<annotation>
+<documentation>Sessionid</documentation>
+</annotation>
+</element>
+<element maxOccurs="unbounded" minOccurs="1" name="documentid" type="xsd:string">
+<annotation>
+<documentation>Path to the document</documentation>
+</annotation>
+</element>
+<element maxOccurs="unbounded" minOccurs="1" name="documenttext" type="xsd:string">
+<annotation>
+<documentation>Document description</documentation>
+</annotation>
+</element>
+<element maxOccurs="unbounded" minOccurs="1" name="documentdate" type="xsd:string">
+<annotation>
+<documentation>Creation date</documentation>
+</annotation>
+</element>
+<element maxOccurs="1" minOccurs="1" name="success" type="xsd:boolean"/>
+<element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:CallError"/>
+</sequence>
+</complexType>
+<element name="getdocumentResult">
+<complexType>
+<sequence>
+<element maxOccurs="1" minOccurs="1" name="response" type="tns:GetdocumentResponse"/>
+</sequence>
+</complexType>
+</element>
+</schema>
+</wsdl:types>
+<wsdl:message name="getitemsRequestMessage">
+<wsdl:part element="tns:getitems" name="parameter"/>
+</wsdl:message>
+<wsdl:message name="getitemsResponseMessage">
+<wsdl:part element="tns:getitemsResult" name="parameter"/>
+</wsdl:message>
+<wsdl:message name="getstockRequestMessage">
+<wsdl:part element="tns:getstock" name="parameter"/>
+</wsdl:message>
+<wsdl:message name="getstockResponseMessage">
+<wsdl:part element="tns:getstockResult" name="parameter"/>
+</wsdl:message>
+<wsdl:message name="createorderRequestMessage">
+<wsdl:part element="tns:createorder" name="parameter"/>
+</wsdl:message>
+<wsdl:message name="createorderResponseMessage">
+<wsdl:part element="tns:createorderResult" name="parameter"/>
+</wsdl:message>
+<wsdl:message name="gettotalstockRequestMessage">
+<wsdl:part element="tns:gettotalstock" name="parameter"/>
+</wsdl:message>
+<wsdl:message name="gettotalstockResponseMessage">
+<wsdl:part element="tns:gettotalstockResult" name="parameter"/>
+</wsdl:message>
+<wsdl:message name="getdocumentlistRequestMessage">
+<wsdl:part element="tns:getdocumentlist" name="parameter"/>
+</wsdl:message>
+<wsdl:message name="getdocumentlistResponseMessage">
+<wsdl:part element="tns:getdocumentlistResult" name="parameter"/>
+</wsdl:message>
+<wsdl:message name="showdocumentRequestMessage">
+<wsdl:part element="tns:showdocument" name="parameter"/>
+</wsdl:message>
+<wsdl:message name="showdocumentResponseMessage">
+<wsdl:part element="tns:showdocumentResult" name="parameter"/>
+</wsdl:message>
+<wsdl:message name="getdocumentRequestMessage">
+<wsdl:part element="tns:getdocument" name="parameter"/>
+</wsdl:message>
+<wsdl:message name="getdocumentResponseMessage">
+<wsdl:part element="tns:getdocumentResult" name="parameter"/>
+</wsdl:message>
+<wsdl:portType name="EA6183RA">
+<wsdl:operation name="getitems">
+<wsdl:documentation>Vareoplysninger</wsdl:documentation>
+<wsdl:input message="tns:getitemsRequestMessage" name="getitemsRequestMessage"/>
+<wsdl:output message="tns:getitemsResponseMessage" name="getitemsResponseMessage"/>
+</wsdl:operation>
+<wsdl:operation name="getstock">
+<wsdl:documentation>Hent lager tal</wsdl:documentation>
+<wsdl:input message="tns:getstockRequestMessage" name="getstockRequestMessage"/>
+<wsdl:output message="tns:getstockResponseMessage" name="getstockResponseMessage"/>
+</wsdl:operation>
+<wsdl:operation name="createorder">
+<wsdl:documentation>Dannelse af order</wsdl:documentation>
+<wsdl:input message="tns:createorderRequestMessage" name="createorderRequestMessage"/>
+<wsdl:output message="tns:createorderResponseMessage" name="createorderResponseMessage"/>
+</wsdl:operation>
+<wsdl:operation name="gettotalstock">
+<wsdl:documentation>Helt alle vare</wsdl:documentation>
+<wsdl:input message="tns:gettotalstockRequestMessage" name="gettotalstockRequestMessage"/>
+<wsdl:output message="tns:gettotalstockResponseMessage" name="gettotalstockResponseMessage"/>
+</wsdl:operation>
+<wsdl:operation name="getdocumentlist">
+<wsdl:documentation>Get a list of dokuments</wsdl:documentation>
+<wsdl:input message="tns:getdocumentlistRequestMessage" name="getdocumentlistRequestMessage"/>
+<wsdl:output message="tns:getdocumentlistResponseMessage" name="getdocumentlistResponseMessage"/>
+</wsdl:operation>
+<wsdl:operation name="showdocument">
+<wsdl:documentation>Show document</wsdl:documentation>
+<wsdl:input message="tns:showdocumentRequestMessage" name="showdocumentRequestMessage"/>
+<wsdl:output message="tns:showdocumentResponseMessage" name="showdocumentResponseMessage"/>
+</wsdl:operation>
+<wsdl:operation name="getdocument">
+<wsdl:documentation>Hent et enkelt dokument</wsdl:documentation>
+<wsdl:input message="tns:getdocumentRequestMessage" name="getdocumentRequestMessage"/>
+<wsdl:output message="tns:getdocumentResponseMessage" name="getdocumentResponseMessage"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="EA6183RASoapBinding" type="tns:EA6183RA">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="getitems">
+<soap:operation soapAction=""/>
+<wsdl:input name="getitemsRequestMessage">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="getitemsResponseMessage">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getstock">
+<soap:operation soapAction=""/>
+<wsdl:input name="getstockRequestMessage">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="getstockResponseMessage">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="createorder">
+<soap:operation soapAction=""/>
+<wsdl:input name="createorderRequestMessage">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="createorderResponseMessage">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="gettotalstock">
+<soap:operation soapAction=""/>
+<wsdl:input name="gettotalstockRequestMessage">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="gettotalstockResponseMessage">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getdocumentlist">
+<soap:operation soapAction=""/>
+<wsdl:input name="getdocumentlistRequestMessage">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="getdocumentlistResponseMessage">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="showdocument">
+<soap:operation soapAction=""/>
+<wsdl:input name="showdocumentRequestMessage">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="showdocumentResponseMessage">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getdocument">
+<soap:operation soapAction=""/>
+<wsdl:input name="getdocumentRequestMessage">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="getdocumentResponseMessage">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="EA6183RA">
+<wsdl:documentation>webservice vare/order</wsdl:documentation>
+<wsdl:port binding="tns:EA6183RASoapBinding" name="EA6183RA">
+<soap:address location="https://texb2b.aspect4.com/muv_webservices/services/EA6183RA.EA6183RA"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>
